@@ -1,3 +1,10 @@
+/**
+ * Main function for the file reversal program,
+ * handles commandline i/o
+ *
+ * Author: Nathan Pipe
+ */
+
 #include "file_utils.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,10 +18,10 @@ int main(int argc, char** argv) {
 	
 	char* buffer;
 	int sizeRead = read_file(argv[1], &buffer);
-	printf(buffer);
+	//printf(buffer);
 	
 	int sizeWritten = write_file(argv[2], buffer, sizeRead);
-	printf(buffer);	
+	//printf(buffer);	
 	//error in file i/o
 	if(sizeWritten != sizeRead)
 		return -1;

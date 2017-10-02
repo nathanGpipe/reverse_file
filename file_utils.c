@@ -1,13 +1,20 @@
+/**
+ * Implementation for read/write functionality for the file
+ * reversal program.
+ *
+ * Author: Nathan Pipe
+ */
+
 #include "file_utils.h"
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 
-/*
-	Takes a file on the system at filename, and places into the buffer.
-	Returns the number of bytes read.
-*/
+/**
+ * Takes a file on the system at filename, and places into the buffer.
+ * Returns the number of bytes read.
+ */
 int read_file(char* filename, char** buffer) {
 	FILE* fp = fopen(filename, "r");
 	if(fp == NULL) {
@@ -32,16 +39,18 @@ int read_file(char* filename, char** buffer) {
 	return size;
 }
 	
-/*
-	Takes a buffer with size number of bytes and writes it to the system at filename.
-	Returns the number of bytes written.
-*/
+/**
+ * Takes a buffer with size number of bytes and writes it to the system at filename.
+ * Returns the number of bytes written.
+ */
 int write_file(char* filename, char* buffer, int size) {
 	FILE* fp = fopen(filename, "w");
 	if(fp == NULL) {
 		fprintf(stderr, "ERROR: Problem allocating memory");
+		return -1;
 	}
-		
+	
+	//file writing
 	int sizeWritten = 0;
 	for (int i = size-1; i >= 0; i--) {
 		//fputc(buffer[i], fp);
@@ -51,5 +60,5 @@ int write_file(char* filename, char* buffer, int size) {
 	}
 	
 	fclose(fp);
-	return -1;
+	return sizeWritten;
 }
